@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{ margin:40px; background:#666; }
+#my_canvas{ background:#FFF; border:#000 1px solid; }
+</style>
+<script>
+<!-- load image-->
+var leather = new Image();
+leather.src = "a1.jpg";
+
+function draw() {
+    <!-- get canvas's 2d element-->
+    var ctx = document.getElementById("my_canvas").getContext("2d");  
+    alert(ctx.canvas.id+" | "+ctx.canvas.width+" | "+ctx.canvas.height);
+	
+	<!--set rectangular fill tyle by color, hex, rgba(), gradient, pattern-->
+	// createLinearGradient(x0, y0, x1, y1), gradient is the background color
+	var g1 = ctx.createLinearGradient(20, 20, 100, 20);
+	g1.addColorStop(0,"magenta");
+    g1.addColorStop(0.5,"yellow");
+    g1.addColorStop(1,"black");
+    ctx.fillStyle = g1;
+	ctx.fillRect(20,20,100,100);
+	
+	// createRadialGradient(x0, y0, r0, x1, y1, r1)
+	var g2 = ctx.createRadialGradient(200, 200, 0, 250, 200, 50);
+    g2.addColorStop(0,"magenta");
+    g2.addColorStop(0.5,"yellow");
+    g2.addColorStop(1,"black");
+    ctx.fillStyle = g2;
+	ctx.fillRect(200,200,50,50);
+	
+	// create pattern fill style
+	var pattern = ctx.createPattern(leather, "repeat");
+    ctx.fillStyle = pattern;
+	<!--build rectangular in canvas by x,y,w,h-->
+    ctx.fillRect(250,250,50,50);
+	
+	<!--build rectangular outline-->
+	ctx.lineWidth = 10;
+	ctx.strokeStyle = "red";
+    ctx.strokeRect(40,40,100,100);
+	
+	<!-- clear rectangular by x,y,w,h-->
+    ctx.clearRect(0, 0, 100, 100);
+	
+	<!--shadow-->
+	ctx.fillStyle="yellow";
+    ctx.shadowColor = 'rgba(0,0,0,1)';
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    ctx.shadowBlur = 3;
+    ctx.fillRect(200, 50, 100, 100);
+}
+window.onload = draw;
+</script>
+</head>
+
+<body>
+
+<canvas id="my_canvas" width="400" height="300"></canvas>
+
+</body>  
+</html>

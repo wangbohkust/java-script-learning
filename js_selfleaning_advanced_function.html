@@ -1,0 +1,74 @@
+<html>
+<head>
+</head>
+<body onload="alert('page loaded');">
+<script type="text/javascript">
+    <!-- start from 0 to 11 -->
+    var val =Math.floor(Math.random()*11);	
+	document.write(val+"<br>");
+	
+	<!-- anonymous function, function expression syntax, compile until executed-->
+	var doSomething = function(){ 
+	   var length = arguments.length;
+	   document.write("parameter number: "+ length+" with first:"+arguments[0]+"<br>");
+	   <!-- safe recursive function by using arguments.callee(), rather than doSomething()-->
+	   document.write(arguments.callee);
+	}
+	doSomething(1,2,3);
+	
+	function doSomething2(arg1){
+	   var val2 = "it's good";
+	   <!--closure function which close any elements between {} in memory, data hiding/carrying -->
+	   return function(){
+	        alert(val2);
+	   }
+	}
+	var fn = doSomething2("hello");
+	fn();
+	<!-- closure always keep those elements in memory until declared null>
+	fn = null;
+	
+	<!-- protect the nameGen function by using self-invoking function -->
+	<!-- utility is a object by using end() which means function executed -->
+	var utility = function(){	
+	         var i =0;
+			 <!-- return a object but not function-->
+	         return{ nameGen:function (){
+	                   var name = i;
+		               i= i+1;
+		               return name;
+					 }
+	          }
+		}();
+     var name = utility.nameGen();
+	 var name2 = utility.nameGen();
+     document.write(name+" "+name2+"<br>"); 
+	 
+	 <!-- calculator is a object that has a element calculate which is a function-->
+	 var calculator = {
+	     calculate: function(x,y,fn){
+		     return fn(x,y);
+		 }
+	 };
+	 var sum = function(x,y){ return x+y;};
+	 var rst = calculator.calculate(1,2,sum);
+	 document.write(rst+"<br>");
+	 
+	 <!-- function as object, use them by apply/call-->
+	 var obj={name:"obj",doSomething: function(x,y){document.write(x+y+this.name);}};
+	 var bar={name:"bar"};
+	 obj.doSomething.apply(bar,["1","2"]);
+	 obj.doSomething.call(bar,"1","2");
+	 
+	 <!-- a,b,c,fn use function object to the front parameters -->
+	 calculate2: function(){
+	         <!--Array's function object could be used into arguments-->
+	         var fn= Array.prototype.pop.apply(arguments)
+			 <!-- or fn.apply(null,arguments)-->
+		     return fn(arguments);
+		 }
+</script>
+
+
+</body>
+</html>

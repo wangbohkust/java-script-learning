@@ -1,0 +1,26 @@
+<html>
+<head>
+</head>
+<body>
+ <script type="text/javascript">
+  localStorage.firstName = "john";
+  localStorage.setItem("lastName","Doe");
+  localStorage.age=47;
+  document.write(localStorage.getItem("firstName")+" "+ localStorage.lastName+"<br>");
+  localStorage.removeItem("lastName")
+  var age = parseInt(localStorage.age,10);
+  document.write(localStorage.getItem("firstName")+" "+ localStorage.lastName+" "+age+"<br>");
+  localStorage.clear();
+  
+  var person = {
+     firstName: "john",
+	 lastName: "doe",
+	 age: 47
+  };
+  localStorage.person = JSON.stringify(person);
+  var personObj = JSON.parse(localStorage.person);
+   document.write(personObj.firstName+" "+personObj.lastName);
+ </script>
+ <a href="js_selfleaning_localstorage2.html">click</a>
+</body>
+</html>

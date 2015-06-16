@@ -1,0 +1,70 @@
+<html>
+<head>
+</head>
+<body onload="alert('page loaded');">
+<script type="text/javascript">
+
+   <!--build one object with property item-->
+   var myDelegate = {item: "shadow"};
+   var obj1 = Object.create(myDelegate,{item:{ value: "value"}});
+   var obj2 = Object.create(myDelegate);
+   
+   <!-- local look up first>
+   document.write(obj1.item+"<br>");
+   document.write(myDelegate.item+"<br>");
+   <!--fail to look up local value, it will turn to delegate/reference>
+   document.write(obj2.item+"<br>");
+   
+   myDelegate.item = "new shadow";
+   document.write(obj2.item+"<br>");
+   
+   obj2.item = "new"
+   document.write(myDelegate.item+"<br>");
+   
+   <!-- . and [], build up variable with a function property -->
+   var Obj = {
+        method: function(){
+		    document.write("funciton inside");
+		}
+   }
+   <!-- same result, call(obj), obj is scope-->
+   Obj.method();
+   Obj["method"].call(this);
+    document.write("<br>");
+	
+   <!-- PROTOTYPE: add object property and method to custom object during run time-->
+   function Person(){
+       this.attack= function(){
+	       document.write("funciton attack");
+	   }
+   }
+   Person.prototype.heal = function heal(){
+         document.write("funciton heal");
+   }
+   Person.prototype.energy=200;
+   var personInstance = new Person();
+   personInstance.attack();
+   personInstance.heal();
+   document.write(personInstance.energy+"<br/>");
+   
+   <!-- using prototype to implement inheritance-->
+   function Student(){
+       this.leanrn = function learn(){
+	      document.write("funciton learn");
+	   }
+   }
+   <!--assign parent class to it-->
+   Student.prototype = new Person();
+   var instance = new Student();
+    document.write(instance instanceof Student);
+	document.write(instance instanceof Person);
+	document.write("<br/>");
+	<!-- override parent method-->
+	Student.prototype.attack = function attack(){
+	   document.write("student funciton attack");
+	}
+	instance.attack();
+   </script>
+   
+</body>
+</html>

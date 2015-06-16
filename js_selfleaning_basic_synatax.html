@@ -1,0 +1,81 @@
+<html>
+<head>
+</head>
+<body onload="alert('page loaded');">
+
+<script type="text/javascript">
+// used for older browser that would ignore following code
+<!--
+    document.write("01/11/2015"+"<br />");
+//-->
+//variable
+     var x = 20;
+	 var y= "string is \"string\"";
+	 var z= null;
+	 var p= "5";
+	 document.write((x+p)+" "+(x+Number(p))+" "+(x*p)+"<br>");
+	 document.write(y.length+"<br>");
+	 bool_var = Boolean(23);
+	 document.write(bool_var+"<br/>")
+	 var input=prompt("enter your name:","text edited here");
+	 document.write("hello"+input+"<br>");
+//array, element could be different type 
+	 var people = new Array("a","b","c");
+	 document.write(people[0]+people.length+"<br>");
+	 var things = new Array(3);
+	 things[0]="d"; things[1]="e";things[2]="f";
+	 var things = new Array();// dynamic array
+	 var no_index = new Array();
+	 no_index["one"]="one";
+	 no_index["two"]="two";
+	 var combine=people.concat(things);
+	 combine.pop();
+	 document.write(combine[5]+"<br>");
+	 combine.reverse();
+	 combine.splice(0,2); //cut out 2 items start from index 0, return cut items
+	 combine.splice(0,2,2,3)// cut and replace by 2 & 3
+	 combine.push("c");
+	 combine.sort();
+	 for(i in combine){
+	     document.write(combine[i]+"<br/>")
+	 }
+//multi-array
+     var multiarray=[[1,2,3],[4,5,6]];
+//string
+	 var combinestring= combine.join("/");
+	 document.write(combinestring+"<br>");
+	 combinestring.substring(0,3);
+	 combinestring.charAt(0);
+	 combinestring.indexOf('a');
+//function declare and execute, compatible for call have more or less arguments
+    function foo(a,b){
+	document.write(a+b+"<br>");
+	return a+b;
+	}
+	document.write(foo("one","two")+"<br>");
+	function printtime(){ 
+	    var now =new Date();
+		document.write(now.getHours()+":"+now.getMinutes()+":"+now.getSeconds()+"<br>");
+	}
+	setInterval("printtime()",1000);
+//math function
+    document.write(Math.sqrt(81)+" "+Math.PI+" "+Math.E+" "+Number.MAX_VALUE+"<br>");    
+	var float_var=3.1415926;
+	var float_str=float_var.toFixed(3);
+	var float_int=parseInt(float_var);
+	document.write(float_str+" "+float_int+" "+typeof(float_str)+"<br />")
+</script>
+
+<a href="http://www.baidu.com" onMouseOut="alert('this is baidu');">website link1</a>
+<a href="http://www.google.com" onMouseOver="alert('this is google');">website link2</a>
+
+<form>
+<input type="button" value ="press me" onClick="foo('one','two');alert('haha');">
+</form>
+
+<noscript>
+   <h3> this site requires javascript</h3>
+</noscript>
+
+</body>
+</html>

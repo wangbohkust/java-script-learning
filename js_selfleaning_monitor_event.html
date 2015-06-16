@@ -1,0 +1,94 @@
+<html>
+<head>
+   <title> javascript monitor event learning</title>
+   <style>
+      #h3style{
+	      color:gray;
+	  }
+   </style>
+   <script type="text/javascript" src="external_function.js">
+   </script>
+</head>
+<body onResize="changeImage();">
+   <script language="javascript" type="text/javascript">
+       function changeImage(){
+	      document.getElementById("little_brain").style.height="35%";
+		  document.getElementById("little_brain").style.width="35%";
+		  return true;
+	   }
+	   function alertme(){
+	       var alertmsg = document.getElementById("little_brain").src+" "+document.getElementById("little_brain").height+" "+document.getElementById("little_brain").width;
+		   alert(alertmsg);
+		   return true;
+	   }
+	   function changecolor(){
+	        document.getElementById("h3style").style.color="red";
+			// change text information
+			document.getElementById("h3style").firstChild.nodeValue="excited";
+	   }
+	   function showpara(){
+	        document.getElementById("first_paragraph").style.visibility=(document.checkbox_form.check_for_first.checked)?"visible":"hidden";
+		    document.getElementById("second_paragraph").style.visibility=(document.checkbox_form.check_for_second.checked)?"visible":"hidden";
+	        document.getElementById("third_paragraph").style.visibility=(document.checkbox_form.check_for_third.checked)?"visible":"hidden";
+
+	   }
+   </script>
+   <img src="little_brain.png" id="little_brain" ondblClick="alertme();">
+   <h3 id="h3style" onmouseover="changecolor();">TEXT HERE</h3>
+   <p  id="first_paragraph"> this is first paragraph</p>
+   <p  id="second_paragraph"> this is second paragraph</p>
+   <p  id="third_paragraph"> this is third paragraph</p>
+   <form name="checkbox_form">
+      <input type="checkbox" name ="check_for_first" onclick="showpara();"/>First paragraph<br />
+	  <input type="checkbox" name ="check_for_second" onclick="showpara();"/>Second paragraph<br />
+      <input type="checkbox" name ="check_for_third" onclick="showpara();"/>Third paragraph<br />
+	</form>
+	<form name="textinput_form">
+	   <p> TEXT INPUT</p>
+	   <input type="text" name="textinput" onBlur="alert('onblur');" onfocus="alert('onfocus');">
+	</form>
+	<form name="mouse_form">
+	    <input type="text" name="mousex" />MouseX<br />
+	    <input type="text" name="mousey" />MouseY<br />
+	    <input type="text" name="keypress" />Key Pressed<br />
+	    <input type="text" name="mousebutton" />Mouse Pressed<br />
+	</form>
+	<script language="javascript" type="text/javascript">
+	   var check_ie = (navigator.appName=="Microsoft Internet Explorer")?true:false;
+	   if(!check_ie){
+	   // start to monitor mouse event
+	       document.captureEvents(Event.MOUSEMOVE);
+		   //document.captureEvents(Event.MOUSEDOWN);
+	   }
+	   //mouse move trigger self-define function
+	   document.onmousemove=mousePos;
+	  // document.onmousedown=mouseClicked;
+	   function mousePos(e){
+	       document.mouse_form.mousex.value=e.pageX;
+		   document.mouse_form.mousey.value=e.pageY;
+		   return true;
+	   }
+	   function editNodeText(id, newText){
+	     var node= document.getElementById(id);
+		 while(node.firstChild)  //once there are children in span
+		    node.removeChild(node.firstChild);
+		 node.appendChild(document.createTextNode(newText));//add new child once existed child has been removed
+	     document.getElementById(id).style.position="fixed";
+		 document.getElementById(id).style.top="100px";
+		 document.getElementById(id).style.left="300px";
+	   }
+	   function editNodeText2(id,newText){
+	       var node= document.getElementById(id).lastChild; //a pointer
+		   node.nodeValue=newText;
+		   var node= document.getElementById(id);
+		   var newNode=document.createElement('hr');
+		   node.appendChild(newNode);
+	   }
+	</script>
+	<span id ="spanEx" onclick="editNodeText('spanEx','new text here')"> change the text </span><br />
+	<div id="divEx"onclick="editNodeText2('divEx','new text in div')">
+	<b>bbbb</b>
+	<c>cccc</c>
+	</div>
+</body>
+</html>

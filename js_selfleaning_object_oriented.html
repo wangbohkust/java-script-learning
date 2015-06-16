@@ -1,0 +1,51 @@
+<html>
+<head>
+</head>
+<body onload="alert('page loaded');">
+<script type="text/javascript">
+<!-- create a var of several properties-->
+var person1 ={ firstName:"john", lastName:"Doe",getName: function(){ return this.firstName+" "+this.lastName; }};   
+
+<!-- factory function create a var with several properties-->
+function createPerson(firstName,lastName){
+  return{
+   firstName:firstName, 
+   lastName:lastName,
+   getName: function(){ 
+      return this.firstName+" "+this.lastName; 
+      },
+	greet: function(person){
+	   if(typeof person.getName != "undefined"){
+	      return "hello"+person.getName();
+	   }
+	 }
+   };
+} 
+var person2 = createPerson("wang","bo");   
+document.write(person2.greet(person1)+"<br>");   
+
+<!--constructor function-->
+ function Person(firstName,lastName){
+   <!-- in case you forget to use new when initiate object-->
+   if(this==window){
+     return new Person(firstName,lastName);
+   }
+  this.firstName=firstName;
+  this.lastName= lastName;
+  this.getName= function(){ 
+      return this.firstName+" "+this.lastName; 
+      };
+}
+<!--prototype makes class element initiated only one time, or it will created every object-->
+ Person.prototype.greet= function(person){
+	   if(person instanceof Person){
+	      return "hello"+person.getName();
+	   }
+	 };
+var person3 = new Person("wang","Bo"); 
+var person4 = new Person("Wang","Bo");
+document.write(person3.getName()+" "+person3.greet(person4)+"<br>");
+document.write(Person.prototype.greet);
+</script>
+</body>
+</html>

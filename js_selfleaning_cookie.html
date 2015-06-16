@@ -1,0 +1,29 @@
+<html>
+<head>
+   <title> javascript cookie learning</title>
+    <script type="text/javascript">
+	  function getCookie(name){
+	     var cookiename= document.getElementById(getname).value;
+		 var allcookies=document.cookie.split(";");
+		 var cookiedata;
+		 for(var i=0;i<allcookies.length;i++){
+		    if((allcookies[i].indexOf(cookiename))!=-1){
+			    match=allcookies[i].replace(" ","");
+				cookiedata=match.substr((cookiename.length+1));
+				alert(cookiename+" "+)
+			}
+		 }
+	  
+	  
+	  }
+   </script>
+</head>
+<body>
+    <p>Cookie Name:<input id="name" type="text" size="30" onblur="createCookie('name');" /><br /></p>
+	<p>Delete Cookie Name:<input id="deletename" type="text" size="30" onblur="deleteCookie();" /><br /></p>
+	<p>Get Cookie Name:<input id="getname" type="text" size="30" onblur="getCookie();" /><br /></p>
+	<script type="text/javascript">
+	  document.write(document.cookie);
+   </script>
+</body>
+</html>

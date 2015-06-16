@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{ margin:10px; background:#666; }
+#my_canvas{ background:#FFF; border:#000 1px solid; }
+</style>
+<script>
+var pic = new Image();
+pic.src = "b2.jpg";
+function draw(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+   // ctx.drawImage(pic, 0, 0);
+    ctx.fillStyle = "magenta";
+    ctx.fillRect(20, 20, 100, 100);
+	<!--set transparency-->
+	ctx.globalAlpha = 0.5
+	<!--globalCompositeOperation source-atop || source-in || source-out || source-over (default) || destination-atop || destination-in || destination-out || destination-over || lighter || copy || xor-->
+	ctx.globalCompositeOperation = "xor";
+    ctx.fillStyle = "blue";
+    ctx.fillRect(40, 40, 100, 100);
+	
+    var src = ctx.getImageData(20, 20, 100, 100);
+	ctx.putImageData(src, 200, 20);
+    var copy = ctx.createImageData(src.width, src.height);
+    // Make the copy's data array equal to the src data array
+   // for(var i = 0; i < copy.data.length; i++){
+   //     copy.data[i] = src.data[i];
+   // }
+     copy.data.set(src.data); // Use this when IE respects set()
+     ctx.putImageData(copy, 350, 20);
+}
+window.onload = draw;
+</script>
+</head>
+<body>
+<canvas id="my_canvas" width="500" height="350"></canvas>
+</body>  
+</html>

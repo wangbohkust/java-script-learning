@@ -1,0 +1,39 @@
+<html>
+<head>
+<style>
+#ball{
+	background-image: url("ball_bounce.jpg");
+	width: 200px;
+	height: 200px;
+}
+@keyframes ball-bounce {
+    <!--move the background-->
+	from { background-position: 0px; }
+	to { background-position: -300px; }
+}
+@-webkit-keyframes ball-bounce {
+	from { background-position: 0px; }
+	to { background-position: -300px; }
+}
+</style>
+</head>
+<body>
+    <div id="ball"></div>
+    <button id="startbtn">Start</button>
+    <button id="stopbtn">Stop</button>
+
+	<script>
+             startbtn.addEventListener("click", function(){
+			   <!--add animation property in css-->
+	           ball.style.animation = "ball-bounce 0.7s steps(6) infinite";
+			   <!--execute 5 times frame ball-bounce in 0.7s infinitly-->
+	           ball.style.webkitAnimation = "ball-bounce 0.7s steps(5) infinite";
+             });
+			 
+            stopbtn.addEventListener("click", function(){
+	           ball.style.animation = "";
+	           ball.style.webkitAnimation = "";
+             });
+    </script>
+</body>
+</html>

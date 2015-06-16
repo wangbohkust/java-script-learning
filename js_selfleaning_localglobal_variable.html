@@ -1,0 +1,17 @@
+<html>
+<head>
+</head>
+<body onload="alert('page loaded');">
+
+<script type="text/javascript">
+var x=1;
+function foo(){
+document.write("in foo before: "+x+"<br />") //defined before given value
+ var x=2;
+document.write("in foo after: "+x+"<br />")
+}
+foo();
+document.write("out foo: "+x+"<br />")
+</script>
+</body>
+</html>

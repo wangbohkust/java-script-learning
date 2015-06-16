@@ -1,0 +1,15 @@
+<html>
+<head>
+<script type="text/javascript">
+<!-- before reload listener, return the information-->
+window.onbeforeunload = function(){
+   var ta = document.getElementById("user_post");
+   if(ta.value != "")   
+     return "you have unsaved word";
+}
+</script>
+</head>
+<body>
+<textarea id="user_post"></textarea>
+</body>
+</html>

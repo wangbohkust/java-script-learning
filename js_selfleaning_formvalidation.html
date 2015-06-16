@@ -1,0 +1,39 @@
+<html>
+<head>
+   <title> javascript form validation learning</title>
+    <script type="text/javascript">
+	  function addEvent(el,type,fn){
+	        el.addEventListener(type,fn,false);	   
+	   };
+	  function editNodeText(regrex,input,helpId,helpMessage){
+	       if(!regrex.test(input)){
+		      if(helpId!=null){
+			     while(helpId.firstChild){
+				     helpId.removeChild(helpId.firstChild);
+				 }
+			   helpId.appendChild(document.createTextNode(helpMessage));
+			   return false;
+			   }
+		   }else{
+		      if(helpId!=null){
+			     while(helpId.firstChild){
+				     helpId.removeChild(helpId.firstChild);
+				 }
+				 return true;
+				 }
+		   }
+	  }
+	  function empty(inputField,helpId){
+	       //regular expression
+	       return editNodeText(/^[A-Za-z\.\'\-]{2,15}\s?[A-Za-z\.\'\-]{2,15}/,inputField.value,helpId,"please return formal");    
+	  }
+	 
+   </script>
+</head>
+<body>
+    <div>
+	Enter your name:<input id="name" name="name" type="text" size="30" onblur="empty(this,document.getElementById('name_help'))" />
+	<span id="name_help"</span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+ <input type="text" id="txtInput"/>
+ <script type="text/javascript">
+   function getCharCode(evt){
+	      if(typeof evt.charCode=="number")
+		    return evt.charCode;
+		  else 
+		    return evt.keyCode;
+	   };
+	function addEvent(el,type,fn){
+	        el.addEventListener(type,fn,false);	   
+	   };
+    var txtbox = document.getElementById("txtInput");
+	<!--add event handler when keypress event happen on txtbox by specific function-->
+	addEvent(txtbox,"keypress",
+	function(evt){
+	   var code = getCharCode(evt);
+	   alert(code);
+	});
+ </script>
+</body>
+</html>

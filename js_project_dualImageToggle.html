@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.reveal{
+	width: 280px;
+	height: 280px;
+	border:#000 1px solid;
+	float:left;
+	margin:24px;
+}
+.reveal > img{
+	position:absolute;
+}
+.reveal > .img2{
+    <!--specify a rectangle to clip an absolutely positioned element.-->
+	clip:rect(0px, 140px, 280px, 0px); /* top, right, bottom, left */ 
+}
+.reveal > .activator{
+	position:absolute;
+	width:280px;
+	height:280px;
+	opacity:0;
+	cursor: e-resize;
+}
+</style>
+<script>
+function reveal(event){
+    <!-- event target point to current invoked element, previous sibiling is img2-->
+	<!--event.clientX point to current mouse position>
+    event.target.previousElementSibling.style.clip = "rect(0px, "+(event.clientX-event.target.offsetLeft)+"px, 280px, 0px)";  
+}
+</script>
+</head>
+<body>
+
+<div class="reveal">
+  <img src="a2.jpg">
+  <img class="img2" src="a1.jpg">
+  <div class="activator" onmousemove="reveal(event)"></div>
+</div>
+
+</body>
+</html>

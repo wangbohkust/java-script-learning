@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{ margin:10px; background:#666; }
+#my_canvas{ background:#FFF; border:#000 1px solid; }
+</style>
+<script>
+function draw(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+   
+    ctx.fillStyle = '#FC0';
+    ctx.fillRect(0, 0, 100, 100);
+	
+	// scale(x, y) 1, 1 is default scale
+	ctx.scale(0.5,0.5);
+	ctx.fillRect(200, 0, 100, 100);
+	
+	// translate(x, y) Positive or negative numbers
+	ctx.translate(0,50);
+	ctx.fillRect(400, 0, 100, 100);
+	
+	// transform(xScale, ySkew, xSkew, yScale, xTrans, yTrans)
+    // Default transform matrix is (1,0,0,1,0,0)
+	ctx.transform(1,0.1,0.1,1,0,0)
+	ctx.fillRect(600, 0, 100, 100);
+	
+	// setTransform(xScale, ySkew, xSkew, yScale, xTrans, yTrans)
+	//reset transform
+	ctx.setTransform(1,0,0,1,0,0);
+	
+	// rotate(angle) Angle value expressed in radians
+	ctx.rotate(0.3);
+	ctx.fillRect(400, 0, 100, 100);
+   
+}
+window.onload = draw;
+</script>
+</head>
+<body>
+<canvas id="my_canvas" width="500" height="350"></canvas>
+</body>  
+</html>

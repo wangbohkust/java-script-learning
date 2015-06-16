@@ -1,0 +1,72 @@
+<html>
+<head>
+
+<script type="text/javascript">
+   //method1: construct function
+   function person(name,age){
+       this.name=name;
+	   this.age=age;
+	   this.yearsleft=years; //np parethesis, inline method
+   }
+   //create object method
+   function years(){
+       return 65-this.age;
+   }
+   person.prototype.setAge=function(newage){
+        if(typeof newage!='undefined'){
+		    this.age= newage;
+		}
+   } 
+   person.prototype.getAge=function(){
+        return this.age;
+   }
+   // create new instance/object
+   var fred = new person("wangbo",24);
+   
+   //mehtod2: object initializer
+   person2 = {name:"wangbo2", age:22}
+ 
+   // inheritance method1
+   fucntion Cat(){
+       person.call(this); // inhert all properties
+	   this.mode="happy"; // default construct
+   }
+   //method2
+   Cat.prototype =new person();
+   Cat.prototype.constructor = Cat; // set constructor
+   Cat.prototype.getMode=function(){
+        return this.mode;
+   }
+   
+   //check_box function
+   function validator(){
+       if(document.check_box.box.checked)
+	       alert("checked");
+		else
+		   alert("unchecked");
+   }
+</script>
+
+</head>
+<body>
+
+<form name="login">
+      Username: <input type="text"> 
+      Password: <input type="password">
+	  submit_button <input type="submit" value="SUBMIT">
+</form>
+<form name="check_box">
+      <input type="checkbox" name ="box"/>
+	  <input type="button"  value="press me" onClick="validator()"/>
+</form>
+<script type="text/javascript">
+// print in body method have parethesis
+      document.write(fred.name+" "+fred.age+" "+fred.yearsleft()+"<br>");
+	  document.write(person2.name+" "+person2.age+"<br>");
+//form array
+  var x= document.forms[0].length;
+  document.write(x);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{ margin:40px; background:#666; }
+#canvas1{ background:#FFF; border:#000 1px solid; }
+</style>
+<script>
+function draw() {
+    var canvas = document.getElementById("canvas1");
+    var ctx = canvas.getContext("2d");
+	
+	// arc(x, y, radius, startAngle, endAngle, anticlockwise)
+	ctx.arc(300,300,50,0,3.14,true);
+	ctx.stroke();
+	
+    ctx.beginPath();
+    ctx.lineWidth = 20;
+	
+	<!-- line end pattern: butt, round, square>
+    ctx.lineCap = "butt"; 
+	
+	<!-- line join pattern-->
+    ctx.lineJoin = "miter"; // bevel, round, miter
+    ctx.miterLimit = 2;
+	
+	<!-- line come be dash with different length with 10px offset-->
+    ctx.setLineDash([20,10,30,10,40,10]);
+    ctx.lineDashOffset = 10;
+	
+    ctx.moveTo(150,150);
+    ctx.lineTo(240,240);
+    ctx.lineTo(180,40);
+	//ctx.arcTo(x1, y1, x2, y2, radius);
+	//ctx.quadraticCurveTo(cpx, cpy, x, y) control point+end point
+	//ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+	ctx.closePath(); // close automatically
+    ctx.stroke();
+	//ctx.fill();
+	alert(ctx.isPointInPath(180, 45));
+	
+}
+window.onload = draw;
+</script>
+</head>
+<body>
+<canvas id="canvas1" width="500" height="400"></canvas>
+</body>  
+</html>

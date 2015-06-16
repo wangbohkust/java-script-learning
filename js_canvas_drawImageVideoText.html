@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{ margin:40px; background:#666; }
+#my_canvas{ background:#FFF; border:#000 1px solid; }
+</style>
+<script>
+var my_pic = new Image();
+my_pic.src = "b1.jpg";
+function draw(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+
+  //drawImage() can take HTMLImage,Canvas,Video element as the parameter
+    ctx.drawImage(my_pic, 20, 20); // x,y
+    ctx.drawImage(my_pic, 250, 20, 50, 50);// x,y,w,h
+    ctx.drawImage(my_pic, 80, 100, 30, 30, 350, 20, 100, 100);//clipx,clipy,clipw,cliph,x,y,w,h
+	
+	ctx.fillStyle = '#FC0';
+    ctx.font = 'italic bold 56px Arial, sans-serif';
+    ctx.fillText('Text On Canvas', 50, 300, 200); //x,y,width
+    ctx.textAlign = 'start'; // start, end, left, right, center
+    ctx.textBaseline = 'hanging'; // top, middle, bottom, hanging, alphabetic, ideographic
+    ctx.strokeText('Text On Canvas', 50, 300, 300);
+}
+window.onload = draw;
+</script>
+</head>
+<body>
+<canvas id="my_canvas" width="500" height="350"></canvas>
+</body>  
+</html>

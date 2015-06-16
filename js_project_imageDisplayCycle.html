@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thumbnail Cycle Tutorial</title>
+<style>
+.item{
+	float: left;
+	border: #AAA 1px solid;
+	padding: 10px;
+	margin: 10px;
+}
+.item > img{
+	width: 180px;
+	height: 140px;
+	border: #666 1px solid;
+    cursor: pointer;
+}
+.item > span{
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+}
+</style>
+<script>
+<!-- when window loaded, the anonymous function will be invoked>
+window.addEventListener("load", function(){
+	var items_container = document.getElementById("items_container");
+	var thumbtimer, ti=0, dir="";
+	
+	<!--build variable with one name property and one pics array property-->
+	var obj1 = { name:"A", pics:["a1.jpg","a2.jpg","a3.jpg"] };
+	var obj2 = { name:"B", pics:["b1.jpg","b2.jpg","b3.jpg"] };
+	var obj3 = { name:"C", pics:["c1.jpg","c2.jpg","c3.jpg"] };
+	var ary = [obj1,obj2,obj3];
+	for(var i=0; i < ary.length; i++){
+		var div = document.createElement("div");
+		var img = document.createElement("img");
+		var span = document.createElement("span");
+		
+		<!-- set style-->
+		div.className = "item";
+		img.oi = i;
+		img.src = dir + ary[i].pics[0];
+		span.innerHTML = ary[i].name;
+		
+		<!-- items container -> 3 div -> img & span-->
+		items_container.appendChild(div);
+		div.appendChild(img);
+		div.appendChild(span);
+		
+		img.addEventListener("mouseover", function(event){
+		    <!--calls a function or evaluates an expression at specified intervals-->
+		    thumbtimer = setInterval(function(){
+			    ti++;
+				<!--when mouse move over one item, it comes to be the event target-->
+			    if(ti == ary[event.target.oi].pics.length){
+				    ti = 0;
+			    }
+			    event.target.src = dir + ary[event.target.oi].pics[ti];
+		    }, 700);
+        });
+		
+		img.addEventListener("mouseout", function(event){
+		    <!-- thumbtimer is a setInterval function-->
+			clearInterval(thumbtimer);
+			ti = 0;
+			event.target.src = dir + ary[event.target.oi].pics[ti];
+		});
+	}
+});
+</script>
+</head>
+<body>
+<div id="items_container"></div>
+</body>
+</html>

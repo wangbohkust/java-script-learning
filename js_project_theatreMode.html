@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div#overlay {
+	display:none;
+	<!-- z-index is the overlay level, the bigger thehigher-->
+	z-index: 2;
+	background:url(a1.jpg);
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	text-align:center;
+}
+img#lightSwitch {
+	position:relative;
+	z-index: 3;
+	cursor:pointer;
+}
+div#special {
+	position:relative;
+	z-index: 4;
+}
+</style>
+<script>
+function toggleTheatreMode(){
+	var overlay = document.getElementById('overlay');
+	var lightSwitch = document.getElementById('lightSwitch');
+	if(overlay.style.display == "block"){
+		overlay.style.display = "none";
+		lightSwitch.src = "b3.jpg";
+		lightSwitch.title = "Enter Theatre Mode";
+	} else {
+		overlay.style.display = "block";
+		lightSwitch.src = "b2.jpg";
+		lightSwitch.title = "Exit Theatre Mode";
+	}
+}
+</script>
+</head>
+<body>
+<!-- Start Overlay -->
+<div id="overlay"></div>
+
+<img id="lightSwitch" onmousedown="toggleTheatreMode()" src="b1.jpg" width="19" height="46" alt="switch" title="Enter Theatre Mode"> 
+
+<h3 style="display:inline;">I can put a title here if I want</h3>
+
+<div id="special">
+  <iframe width="560" height="315" src="http://www.youtube.com/embed/69-R9GHcGWU" frameborder="0" allowfullscreen></iframe>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+function computeLoan(){	
+	document.getElementById('payment').innerHTML = "changed";
+}
+function tipCalculate(slider,bill){
+    document.getElementById('payment').innerHTML = slider+"%";
+}
+</script>
+</head>
+<body>
+<!--input element, one step change 0.1 value-->
+<p>Interest Rate: <input id="interest_rate" type="number" min="0" max="100" value="10" step=".1" onchange="computeLoan()">%</p>
+<input type="range" min="0" max="100" value="0" step="1" onchange="tipCalculate(this.value,'bill')" style="width:400px;">
+<h2 id="payment"></h2>
+</body>
+</html>
